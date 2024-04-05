@@ -37,16 +37,23 @@ const UserProfileForm = ({
   title = "User Profile",
   buttonText = "Submit",
 }: Props) => {
-  const { currentUser: newCurrentUser, isLoading: newIsLoading } =
-    useGetMyUser();
+  const { currentUser, isLoading } = useGetMyUser();
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: newCurrentUser,
+    defaultValues: currentUser,
   });
 
   useEffect(() => {
-    form.reset(newCurrentUser);
-  }, [newCurrentUser, form]);
+    form.reset(currentUser);
+  }, [currentUser, form]);
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (!currentUser) {
+    return <span>Unable to load user profile</span>;
+  }
 
   return (
     <Form {...form}>
@@ -128,7 +135,7 @@ const UserProfileForm = ({
             )}
           />
         </div>
-        {newIsLoading ? (
+        {isLoading ? (
           <LoadingButton />
         ) : (
           <Button type="submit" className="bg-orange-500">
