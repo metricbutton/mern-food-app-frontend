@@ -13,8 +13,9 @@ import {
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
-import { User } from "@/types";
+// import { User } from "@/types";
 import { useEffect } from "react";
+import { useGetMyUser } from "@/api/MyUserApi";
 
 const formSchema = z.object({
   email: z.string().optional(),
@@ -27,28 +28,30 @@ const formSchema = z.object({
 export type UserFormData = z.infer<typeof formSchema>;
 
 type Props = {
-  currentUser: User;
+  // currentUser: User;
   onSave: (userProfileData: UserFormData) => void;
-  isLoading: boolean;
+  // isLoading: boolean;
   title?: string;
   buttonText?: string;
 };
 
 const UserProfileForm = ({
   onSave,
-  isLoading,
-  currentUser,
+  // isLoading,
+  // currentUser,
   title = "User Profile",
   buttonText = "Submit",
 }: Props) => {
+  const { currentUser: newCurrentUser, isLoading: newIsLoading } =
+    useGetMyUser();
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: currentUser,
+    defaultValues: newCurrentUser,
   });
 
   useEffect(() => {
-    form.reset(currentUser);
-  }, [currentUser, form]);
+    form.reset(newCurrentUser);
+  }, [newCurrentUser, form]);
 
   return (
     <Form {...form}>
@@ -130,7 +133,7 @@ const UserProfileForm = ({
             )}
           />
         </div>
-        {isLoading ? (
+        {newIsLoading ? (
           <LoadingButton />
         ) : (
           <Button type="submit" className="bg-orange-500">
