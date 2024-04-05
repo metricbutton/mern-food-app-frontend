@@ -13,7 +13,6 @@ import {
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
-// import { User } from "@/types";
 import { useEffect } from "react";
 import { useGetMyUser } from "@/api/MyUserApi";
 
@@ -28,17 +27,13 @@ const formSchema = z.object({
 export type UserFormData = z.infer<typeof formSchema>;
 
 type Props = {
-  // currentUser: User;
   onSave: (userProfileData: UserFormData) => void;
-  // isLoading: boolean;
   title?: string;
   buttonText?: string;
 };
 
 const UserProfileForm = ({
   onSave,
-  // isLoading,
-  // currentUser,
   title = "User Profile",
   buttonText = "Submit",
 }: Props) => {

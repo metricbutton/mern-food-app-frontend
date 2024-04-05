@@ -6,7 +6,6 @@ import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import UserProfileForm, {
   UserFormData,
 } from "@/forms/user-profile-form/UserProfileForm";
-// import { useGetMyUser } from "@/api/MyUserApi";
 
 type Props = {
   onCheckout: (userFormData: UserFormData) => void;
@@ -23,7 +22,6 @@ const CheckoutButton = ({ onCheckout, disabled, isLoading }: Props) => {
 
   const { pathname } = useLocation();
 
-  // const { currentUser, isLoading: isGetUserLoading } = useGetMyUser();
 
   const onLogin = async () => {
     await loginWithRedirect({
@@ -41,9 +39,6 @@ const CheckoutButton = ({ onCheckout, disabled, isLoading }: Props) => {
     );
   }
 
-  // if (isAuthLoading || !currentUser || isLoading) {
-  //   return <LoadingButton />;
-  // }
   if (isAuthLoading || isLoading) {
     return <LoadingButton />;
   }
@@ -57,9 +52,7 @@ const CheckoutButton = ({ onCheckout, disabled, isLoading }: Props) => {
       </DialogTrigger>
       <DialogContent className="max-w-[425px] md:min-w-[700px] bg-gray-50">
         <UserProfileForm
-          // currentUser={currentUser}
           onSave={onCheckout}
-          // isLoading={isGetUserLoading}
           title="Confirm Delivery Details"
           buttonText="Continue to Payment"
         />
