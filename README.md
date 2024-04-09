@@ -16,7 +16,7 @@ A beautiful web app for ordering lip-smacking delicious food online.
 - Easily add, increase, or decrease the number of items in the cart.
 
 ### 4. Online Payments
-- Integrated **Stripe** payment gateway ensures secure and efficient transactions.
+- Integrated **Stripe** payment gateway for secure and efficient transactions.
 
 ### 5. Live Order Tracking
 - Track the status of orders in real-time for a transparent and engaging experience.
