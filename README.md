@@ -1,5 +1,9 @@
 # Eats.com
 
+## Description
+
+A beautiful web app for ordering lip-smacking delicious food online.
+
 ## Features
 
 ### 1. User Authentication
